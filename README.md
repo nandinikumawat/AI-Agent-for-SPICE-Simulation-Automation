@@ -58,6 +58,7 @@ This AI agent addresses these challenges through:
 - **Unit preservation**: Maintains user-specified formats (5fF, 25C) for reproducible workflows
 
 <img width="1266" height="712" alt="image" src="https://github.com/user-attachments/assets/c063ea4f-9792-44ff-964d-fe7efc4a8503" />
+
 *Figure 1: End-to-end automation workflow from natural language input to characterized results*
 
 ---
@@ -94,6 +95,7 @@ This AI agent addresses these challenges through:
 - **PNG waveforms**: Optional per-simulation waveform plots for detailed inspection
 
 ![Ngspice run](https://github.com/user-attachments/assets/dc28ffd3-1a7e-4eca-9390-b04bc0858486)
+
 *Figure 2: Example terminal session showing natural language parsing and batch simulation execution*
 
 ---
@@ -422,6 +424,7 @@ Sweep: C = 5 → 50 fF, step 5 fF
 - Requires further investigation of exact measurement trigger/target timing
 
 <img width="724" height="462" alt="image" src="https://github.com/user-attachments/assets/3ad35a93-4a89-4833-a085-7eff682e9234" />
+
 *Figure: NAND2 waveform capture showing input/output transitions*
 
 ### Summary of Physical Trends
@@ -790,7 +793,6 @@ University of Minnesota, Twin Cities
 
 Email: kumaw010@umn.edu  
 LinkedIn: [linkedin.com/in/nandini-kumawat](https://www.linkedin.com/in/nandini-kumawat)  
-GitHub: [github.com/yourusername](https://github.com/yourusername)
 
 ### Acknowledgments
 
