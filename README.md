@@ -58,7 +58,6 @@ This AI agent addresses these challenges through:
 - **Unit preservation**: Maintains user-specified formats (5fF, 25C) for reproducible workflows
 ***
 <img width="1266" height="712" alt="image" src="https://github.com/user-attachments/assets/c063ea4f-9792-44ff-964d-fe7efc4a8503" />
-***
 <centre>*Figure 1: End-to-end automation workflow from natural language input to characterized results*</centre>
 
 ---
@@ -95,7 +94,6 @@ This AI agent addresses these challenges through:
 - **PNG waveforms**: Optional per-simulation waveform plots for detailed inspection
 ***
 ![Ngspice run](https://github.com/user-attachments/assets/dc28ffd3-1a7e-4eca-9390-b04bc0858486)
-***
 <centre>*Figure 2: Example terminal session showing natural language parsing and batch simulation execution*</centre>
 
 ---
@@ -354,7 +352,6 @@ The parser accepts flexible natural language syntax:
 - `nand2`, `NAND2`, `nand`
 ***
 ![simulation nand working](https://github.com/user-attachments/assets/48b11a07-49ea-44f6-a185-e95eb53cd4de)
-***
 <centre>*Figure: NAND2 simulation showing input/output transient response*</centre>
 
 ---
@@ -431,7 +428,6 @@ Sweep: C = 5 → 50 fF, step 5 fF
 - Requires further investigation of exact measurement trigger/target timing
 ***
 <img width="724" height="462" alt="image" src="https://github.com/user-attachments/assets/3ad35a93-4a89-4833-a085-7eff682e9234" />
-***
 <centre>*Figure: NAND2 waveform capture showing input/output transitions*</centre>
 
 ### Summary of Physical Trends
