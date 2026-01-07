@@ -56,10 +56,10 @@ This AI agent addresses these challenges through:
 - **Standardized measurements**: Consistent 50% VDD trigger/target rules across all simulations
 - **Automated visualization**: Instant delay-vs-load plots for PVT corner analysis
 - **Unit preservation**: Maintains user-specified formats (5fF, 25C) for reproducible workflows
-
+***
 <img width="1266" height="712" alt="image" src="https://github.com/user-attachments/assets/c063ea4f-9792-44ff-964d-fe7efc4a8503" />
-
-*Figure 1: End-to-end automation workflow from natural language input to characterized results*
+***
+<centre>*Figure 1: End-to-end automation workflow from natural language input to characterized results*</centre>
 
 ---
 
@@ -93,10 +93,10 @@ This AI agent addresses these challenges through:
 - **Matplotlib integration**: Auto-generates delay-vs-Cload curves grouped by temperature
 - **Linear regression overlay**: Shows ps/fF slopes for RC delay model validation
 - **PNG waveforms**: Optional per-simulation waveform plots for detailed inspection
-
+***
 ![Ngspice run](https://github.com/user-attachments/assets/dc28ffd3-1a7e-4eca-9390-b04bc0858486)
-
-*Figure 2: Example terminal session showing natural language parsing and batch simulation execution*
+***
+<centre>*Figure 2: Example terminal session showing natural language parsing and batch simulation execution*</centre>
 
 ---
 
@@ -106,55 +106,55 @@ This AI agent addresses these challenges through:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     User Input Layer                         │
+│                     User Input Layer                        │
 │  "inverter vdd 0.8, temp 25C, load 5-50 fF step 5 fF"       │
 └────────────────────┬────────────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                   Parser Module                              │
-│  ┌──────────────┐      ┌─────────────────┐                 │
-│  │ Regex Engine │─────▶│ Gemini LLM (opt)│                 │
-│  └──────────────┘      └─────────────────┘                 │
-│         │                       │                            │
-│         └───────┬───────────────┘                            │
-│                 ▼                                             │
-│    {gate, vdd, temps, loads}                                 │
+│                   Parser Module                             │
+│  ┌──────────────┐      ┌─────────────────┐                  │
+│  │ Regex Engine │─────▶│ Gemini LLM (opt)│                  │   
+│  └──────────────┘      └─────────────────┘                  │
+│         │                       │                           │
+│         └───────┬───────────────┘                           │
+│                 ▼                                           │
+│    {gate, vdd, temps, loads}                                │
 └────────────────────┬────────────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────────┐
-│              Netlist Builder Module                          │
-│  • PTM 45nm model includes                                   │
-│  • Gate instantiation (INV/NAND2)                            │
-│  • .measure directive generation                             │
-│  • .tran/.option configuration                               │
+│              Netlist Builder Module                         │
+│  • PTM 45nm model includes                                  │
+│  • Gate instantiation (INV/NAND2)                           │
+│  • .measure directive generation                            │
+│  • .tran/.option configuration                              │
 └────────────────────┬────────────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────────┐
-│             ngspice Execution Engine                         │
-│  ┌─────────────────┐      ┌──────────────────┐             │
+│             ngspice Execution Engine                        │
+│  ┌─────────────────┐      ┌──────────────────┐              │
 │  │  Batch Mode     │      │ Interactive Mode  │             │
 │  │  (headless)     │      │  (GUI viewer)     │             │
-│  └─────────────────┘      └──────────────────┘             │
+│  └─────────────────┘      └──────────────────┘              │
 └────────────────────┬────────────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────────┐
-│           Post-Processing Module                             │
+│           Post-Processing Module                            │
 │  • .mt0 parsing → picosecond conversion                     │
-│  • CSV aggregation                                           │
+│  • CSV aggregation                                          │
 │  • Matplotlib plotting (delay vs Cload)                     │
 └────────────────────┬────────────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────────┐
-│              Output Artifacts                                │
-│  • meas_sweep.csv                                            │
-│  • delay_vs_Cload_*.png                                      │
-│  • agent_run_*.cir (generated decks)                         │
-│  • agent_run_*.png (waveforms)                               │
+│              Output Artifacts                               │
+│  • meas_sweep.csv                                           │
+│  • delay_vs_Cload_*.png                                     │
+│  • agent_run_*.cir (generated decks)                        │
+│  • agent_run_*.png (waveforms)                              │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -352,9 +352,10 @@ The parser accepts flexible natural language syntax:
 **Gate Type:**
 - `inverter`, `inv`, `INVERTER`
 - `nand2`, `NAND2`, `nand`
-
+***
 ![simulation nand working](https://github.com/user-attachments/assets/48b11a07-49ea-44f6-a185-e95eb53cd4de)
-*Figure 4: NAND2 simulation showing input/output transient response*
+***
+<centre>*Figure: NAND2 simulation showing input/output transient response*</centre>
 
 ---
 
@@ -364,11 +365,17 @@ The parser accepts flexible natural language syntax:
 
 #### Temperature Dependence (VDD = 0.8V, Fixed Input Edge)
 
-| Temperature | tplh (ps) | tphl (ps) | Observation |
-|------------|-----------|-----------|-------------|
-| -40°C      | 12.43     | 13.66     | Fastest (high mobility) |
-| 25°C       | 16.76     | 18.46     | Nominal |
-| 110°C      | 24.08     | 26.57     | Slowest (mobility degradation) |
+### Inverter Temperature Characterization (VDD=0.8V, Cload=5fF)
+
+**Rising Delay (tplh):**
+- -40°C: 12.43 ps (fastest - high mobility)
+- 25°C: 16.76 ps (nominal)
+- 110°C: 24.08 ps (slowest - mobility degradation)
+
+**Falling Delay (tphl):**
+- -40°C: 13.66 ps
+- 25°C: 18.46 ps  
+- 110°C: 26.57 ps
 
 **Key Insight:** Delay approximately **doubles** from -40°C to 110°C due to carrier mobility reduction at elevated temperatures.
 
@@ -413,30 +420,40 @@ Sweep: C = 5 → 50 fF, step 5 fF
 #### Temperature Sweep (VDD = 0.8V, Cload = 10 fF)
 
 | Temperature | tplh (ps) | tphl (ps) |
-|------------|-----------|-----------|
-| -40°C      | 48.61     | 24.10     |
-| 25°C       | 94.88     | 39.24     |
-| 110°C      | 169.17    | 29.54     |
+|-------------|-----------|-----------|
+| -40°C       | 48.61     | 24.10     |
+| 25°C        | 94.88     | 39.24     |
+| 110°C       | 169.17    | 29.54     |
 
 **Interesting Anomaly:** tphl at 110°C (29.54 ps) is **faster** than at 25°C (39.24 ps). This non-monotonic behavior likely results from:
 - PMOS vs NMOS temperature-dependent mobility interplay
 - Threshold voltage shift effects at different slew measurement points
 - Requires further investigation of exact measurement trigger/target timing
-
+***
 <img width="724" height="462" alt="image" src="https://github.com/user-attachments/assets/3ad35a93-4a89-4833-a085-7eff682e9234" />
-
-*Figure: NAND2 waveform capture showing input/output transitions*
+***
+<centre>*Figure: NAND2 waveform capture showing input/output transitions*</centre>
 
 ### Summary of Physical Trends
 
-| Parameter | Effect on Delay | Mechanism |
-|-----------|----------------|-----------|
-| VDD ↑     | Delay ↓        | Higher overdrive voltage → stronger current drive |
-| Temp ↑    | Delay ↑        | Reduced carrier mobility (μ ∝ T^-1.5) |
-| Cload ↑   | Delay ↑        | Linear RC charging: t = R × C |
-| Falling vs Rising | tphl < tplh (INV) | NMOS stronger than PMOS (higher mobility) |
-| Falling vs Rising | tphl > tplh (NAND2) | Series NMOS stack resistance |
+### Key Design Parameters and Delay Dependencies
 
+**Supply Voltage (VDD):**
+- Increasing VDD reduces delay through higher overdrive voltage and stronger current drive
+- VDD sweep from 0.72V to 0.88V shows tphl reduces 2.1× in NAND2 gates
+
+**Temperature:**
+- Increasing temperature increases delay due to reduced carrier mobility (μ ∝ T^-1.5)
+- Delay doubles from -40°C (12.43ps tplh) to 110°C (24.08ps) in inverters
+
+**Load Capacitance:**
+- Delay increases linearly with load following RC charging model (t = R × C)
+- Measured 2.30 ps/fF (tplh) and 2.60 ps/fF (tphl) slopes for inverter characterization
+
+**Asymmetric Drive Strength:**
+- Inverters: tphl < tplh due to NMOS having higher mobility than PMOS
+- NAND2: tphl > tplh (inverted asymmetry) caused by series NMOS stack resistance
+- Series stacks create 2-3× slower pull-down compared to single PMOS pull-up
 ---
 
 ## Technical Implementation
