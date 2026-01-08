@@ -1,0 +1,40 @@
+
+* CMOS inverter (PTM 45nm)
+Vdd vdd 0 dc 0.8
+Vin in  0 pulse(0 0.8 1n 20p 20p 1n 2n)
+
+* D G S B
+Mn out in  0   0   nmos W=1u L=45n
+Mp out in  vdd vdd pmos W=2u L=45n
+
+Cl out 0 0fF
+
+.include "45nm_LP.pm"
+.temp -40
+
+.control
+  let v50 = 0.8/2
+  set filetype=ascii
+
+  tran 1p 6n
+  run
+
+  * measurements (first edges ~1.0 ns)
+  meas tran tPLH trig v(in)  val=v50 fall=1 targ v(out) val=v50 rise=1 TD=0.9n
+  meas tran tPHL trig v(in)  val=v50 rise=1 targ v(out) val=v50 fall=1 TD=0.9n
+
+  * also expose picosecond versions inside ngspice
+  let tPLH_ps = tPLH*1e12
+  let tPHL_ps = tPHL*1e12
+  print tPLH_ps
+  print tPHL_ps
+  set appendwrite
+  wrdata meas_ps_-40C.dat tPLH_ps tPHL_ps
+
+  * ASCII dump for Python plotting (includes time as first column)
+  wrdata sim_-40C.dat time v(in) v(out)
+
+  plot v(in) v(out)
+.endc
+
+.end
