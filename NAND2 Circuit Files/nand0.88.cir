@@ -1,0 +1,43 @@
+
+* CMOS 2-input NAND (PTM 45nm) — pulse in1, hold in2 = VDD for robust .meas
+Vdd  vdd 0 dc 0.88
+Vin1 in1 0 pulse(0 0.88 1n 10p 10p 200p 2000p)
+Vin2 in2 0 0.88
+
+* D  G   S  B
+Mn1 out in1 n1  0   nmos W=1u L=45n
+Mn2 n1  in2 0   0   nmos W=1u L=45n
+Mp1 out in1 vdd vdd pmos W=2u L=45n
+Mp2 out in2 vdd vdd pmos W=2u L=45n
+
+Cl out 0 5fF
+
+.include "45nm_LP.pm"
+.temp 27
+
+.control
+  let v50 = 0.88/2
+  set filetype=ascii
+
+  tran 1p 6n
+  run
+
+  * in1 edges (~1.0 ns and ~1.2 ns)
+  meas tran tPHL_in1 trig v(in1) val=v50 rise=1 targ v(out) val=v50 fall=1 TD=0.9n
+  meas tran tPLH_in1 trig v(in1) val=v50 fall=1 targ v(out) val=v50 rise=1 TD=1.1n
+
+  * picosecond views of those measurements
+  let tPHL_in1_ps = tPHL_in1*1e12
+  let tPLH_in1_ps = tPLH_in1*1e12
+  print tPHL_in1_ps
+  print tPLH_in1_ps
+  set appendwrite
+  wrdata meas_ps_27C.dat tPHL_in1_ps tPLH_in1_ps
+
+  * ASCII dump for Python plotting
+  wrdata sim_27C.dat time v(in1) v(in2) v(out)
+
+  plot v(in1) v(out)
+.endc
+
+.end
